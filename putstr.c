@@ -10,10 +10,12 @@ int ft_putstr(char *str)
 {
     if (!str)
     {
-        write(1, "(NULL)", strlen("(null)"));
+        write(1, "(null)", ft_strlen("(null)"));
         return (6);
     }
         
-    ft_puts(str);
-    return (strlen(str));
+    int i = 0 ;
+    while(str[i])
+            write(1, &str[i++], 1);
+    return (ft_strlen(str));
 }

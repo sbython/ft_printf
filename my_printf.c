@@ -27,7 +27,7 @@ int chacktype(char c,  va_list agrs)
     else if (c == 's')
             len += ft_putstr(va_arg(agrs , char *));
     else if (c == 'p')
-             len += ft_hexp(va_arg(agrs , size_t));
+            len += ft_hexp(va_arg(agrs ,size_t) );
     else if (c == 'i' || c == 'd')
             len += ft_putnbr(va_arg(agrs , int));
     else if (c == 'u')
@@ -43,22 +43,17 @@ int ft_printf(const char *format, ...)
     va_list agrs;
     int i = 0 ;
     int len = 0;
+    if(!format)
+        return(-1);
     va_start(agrs ,format);
     while (format[i])
     {
         if (format[i] == '%' && format[i + 1] == '%')
-        {
-                len += ft_putchar('%');
-                i++;
-        }
+                len += ft_putchar(format[i++]);
         else if (format[i] == '%' && !(chack(format[i + 1],  "cspdiuxX")))
             return (-1);
         else if  (format[i] == '%' && chack(format[i + 1],  "cspdiuxX"))
-        {
-            
-            len += chacktype(format[i + 1], agrs);
-            i++;
-        }
+            len += chacktype(format[i++ + 1], agrs);
         else
             len += ft_putchar(format[i]);
         i++;

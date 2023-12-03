@@ -1,45 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_hexp.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msbai <msbai@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 23:42:21 by msbai             #+#    #+#             */
+/*   Updated: 2023/12/02 23:42:21 by msbai            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
-
-
-
-static int    count(long int n)
+int	ft_hexp(long unsigned int nbr, int i)
 {
-    int    i;
+	char	*hex;
+	int		len;
 
-    i = 0;
-    while (n)
-    {
-        i++;
-        n /= 16;
-    }
-    return (i);
+	len = 0;
+	if (nbr == 0 && i)
+		return (ft_putstr("(nil)"));
+	if (i)
+		len += ft_putstr("0x");
+	hex = "0123456789abcdef";
+	if (nbr < 16)
+		len += ft_putchar(hex[nbr]);
+	if (nbr >= 16)
+	{
+		len += ft_hexp(nbr / 16, 0);
+		len += ft_hexp(nbr % 16, 0);
+	}
+	return (len);
 }
-
-int ft_hexp(size_t nbr )
-{
-  char *hex;
-  int len = 2;
-    if (nbr == 0)
-        return (ft_putstr("(nil)"));
-    ft_putstr("0x");
-    char *str = malloc(sizeof(char) * (count(nbr) + 1));
-    if(!str)
-      return(0);
-    hex = "0123456789abcdef";
-
-  int i = 0;
-  while(nbr)
-  {
-    str[i++] =  hex[nbr % 16];
-    nbr /= 16;
-  }
-  str[i] = '\0';
-  while (i-- > 0)
-    ft_putchar(str[i]);
-  len += ft_strlen(str);
-  free(str);
-  return (len);
-} 
-

@@ -1,47 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_hex.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msbai <msbai@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 23:42:17 by msbai             #+#    #+#             */
+/*   Updated: 2023/12/03 15:48:50 by msbai            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-
-
-static int    count(long int n)
+int	ft_hex(unsigned int nb, int c, int i)
 {
-    int    i;
+	char	*hex;
+	int		len;
 
-    i = 0;
-    while (n > 15)
-    {
-        i++;
-        n /= 16;
-    }
-    return (i + 1);
+	len = 0;
+	if (nb == 0 && i)
+		return (ft_putchar('0'));
+	if (c == 1)
+		hex = ft_strdup("0123456789abcdef");
+	if (c == 2)
+		hex = ft_strdup("0123456789ABCDEF");
+	if (nb < 16)
+		len += ft_putchar(hex[nb]);
+	if (nb >= 16)
+	{
+		len += ft_hex(nb / 16, c, 0);
+		len += ft_hex(nb % 16, c, 0);
+	}
+	free(hex);
+	return (len);
 }
-
-int ft_hex(unsigned int nb , int c)
-{
-  char *hex;
-  int len = 0;
-  if (nb == 0)
-    return(ft_putchar('0'));
-  char *str = malloc(sizeof(char) * (count(nb) + 1));
-  if(!str)
-    return (0);
-  
-  if (c == 1)
-    hex = ft_strdup("0123456789abcdef");
-  if (c == 2)
-    hex = ft_strdup("0123456789ABCDEF");
-
-  int i = 0;
-  while(nb)
-  {
-    str[i++] =  hex[nb % 16];
-    nb /= 16;
-  }
-  str[i] = '\0';
-  while (i-- > 0)
-    ft_putchar(str[i]);
-  len += ft_strlen(str);
-  free(str);
-  free(hex);
-  return (len);
-}
-

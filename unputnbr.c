@@ -1,21 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unputnbr.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: msbai <msbai@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 23:43:05 by msbai             #+#    #+#             */
+/*   Updated: 2023/12/03 14:38:01 by msbai            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int        ft_unputnbr(unsigned int nbr)
+int	ft_unputnbr(unsigned int nbr)
 {
-    int len = 0;
-    char str[10];
-    int i = 0;
-    if (nbr == 0)
-        return ft_putchar('0');
-   while (nbr > 0)
+	int		len;
+	char	str[10];
+	int		i;
+
+	len = 0;
+	i = 0;
+	if (nbr == 0)
+		return (ft_putchar('0'));
+	while (nbr > 0)
 	{
 		str[i++] = (nbr % 10) + '0';
 		nbr /= 10;
 	}
-    len += i;
+	len += i;
 	while (i > 0)
 	{
 		ft_putchar(str[--i]);
 	}
-    return (len);
+	return (len);
 }

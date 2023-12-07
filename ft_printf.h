@@ -5,15 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msbai <msbai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/02 23:42:30 by msbai             #+#    #+#             */
-/*   Updated: 2023/12/03 15:37:31 by msbai            ###   ########.fr       */
+/*   Created: 2023/12/05 22:42:12 by msbai             #+#    #+#             */
+/*   Updated: 2023/12/05 22:42:16 by msbai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 # include <stdarg.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>

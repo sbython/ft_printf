@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: msbai <msbai@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/02 23:42:52 by msbai             #+#    #+#             */
-/*   Updated: 2023/12/03 15:48:18 by msbai            ###   ########.fr       */
+/*   Created: 2023/12/05 22:40:23 by msbai             #+#    #+#             */
+/*   Updated: 2023/12/05 22:41:24 by msbai            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,12 @@ int	ft_printf(const char *format, ...)
 	{
 		if (format[i] == '%' && format[i + 1] == '%')
 			len += ft_putchar(format[i++]);
-		else if (format[i] == '%' && !(chack(format[i + 1], "cspdiuxX")))
+		else if (format[i] == '%' && format[i + 1] == '\0')
 			return (-1);
 		else if (format[i] == '%' && chack(format[i + 1], "cspdiuxX"))
 			len += chacktype(format[i++ + 1], agrs);
+		else if (format[i] == '%' && !(chack(format[i + 1], "cspdiuxX")))
+			len += ft_putchar(format[i]);
 		else
 			len += ft_putchar(format[i]);
 		i++;
